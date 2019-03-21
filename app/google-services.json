@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "261641579780",
+    "firebase_url": "https://mobile-project-f8c99.firebaseio.com",
+    "project_id": "mobile-project-f8c99",
+    "storage_bucket": "mobile-project-f8c99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261641579780:android:5c07f44242b51299",
+        "android_client_info": {
+          "package_name": "cbridge.android.adouble.com.cbridge"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261641579780-63rkh5j03m9jf49bastv5l2k2soh3q3v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBceCWHUFQ8yTyHwYuYXysLGbt5c-TN22M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
