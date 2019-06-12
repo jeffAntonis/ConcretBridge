@@ -1,0 +1,67 @@
+package cbridge.android.adouble.com.cbridge;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+public class Login extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        final EditText txtEmail = findViewById(R.id.txtEmail);
+        final EditText txtPassword = findViewById(R.id.txtPassword);
+
+        Button btnLogin = findViewById(R.id.btn_login);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login(txtEmail.getText().toString(), txtPassword.getText().toString(), Login.this);
+            }
+        });
+
+        TextView link_signup = (TextView) findViewById(R.id.link_signup);
+        link_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), Register.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void login(String email, String password, final Activity activity) {
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
+        Task<AuthResult> task = auth.signInWithEmailAndPassword(email, password);
+        task.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    FirebaseUser user = auth.getCurrentUser();
+                    //Toast.makeText(activity, user.getUid() + " / " + user.getEmail(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(activity, "Login realizado com sucesso!", Toast.LENGTH_LONG).show();
+
+                    Intent intent = new Intent(activity, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(activity, "Falha na autenticação, verique suas credenciais!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+}
